@@ -10,10 +10,12 @@ var flash    = require('connect-flash');
 var session      = require('express-session');
 var SamlStrategy = require('passport-saml').Strategy;
 var cookieSession = require('cookie-session');
+var helmet = require('helmet');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var exerciseRouter = require('./routes/exercise');
 
 var config = require('./config/config');
 
@@ -37,6 +39,7 @@ app.use(cookieSession({
     maxAge: 2678400000 // 31 days
   },
 }));
+app.use(helmet()) // Bunch of useful CSP, Prefetch, header crap
 
 app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect(config.dburl); // connect to our database
@@ -67,8 +70,9 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', routes);
 app.use('/users', users);
 app.use('/profile', users);
+app.use('/exercise', exerciseRouter);
 require('./routes/login')(app, passport); // load our routes and pass in our app and fully configured passport
-require('./routes/login')(app, passport); // load our routes and pass in our app and fully configured passport
+// require('./routes/login')(app, passport); // load our routes and pass in our app and fully configured passport
 
 
 // catch 404 and forward to error handler
@@ -104,3 +108,9 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+
+    res.redirect('/');
+}
