@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     if(req.user){
         console.log(req.user);
-        res.render('profile.ejs', {user : req.user});
+        res.render('profile.ejs', {title: "Profile", user : req.user});
     } else {
         res.redirect('/login');
     }
