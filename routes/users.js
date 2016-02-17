@@ -4,7 +4,8 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     if(req.user){
-        res.render('generic.ejs', {body : 'respond with a resource'});
+        console.log(req.user);
+        res.render('profile.ejs', {user : req.user});
     } else {
         res.redirect('/login');
     }

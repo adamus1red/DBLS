@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
 
 var exerciseSchema = mongoose.Schema({
-    id : {
-        type : Number
-    },
+    id : String,
     question : String,
     answer : String,
     testQuery : String,

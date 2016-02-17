@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieSession({
   name: 'session',
-  keys: ['key1', 'key2'],
+  keys: ['dsgdahgehtdr', 'hgetrbtdbtdf'],
   cookie: {
     maxAge: 2678400000 // 31 days
   },
@@ -106,7 +106,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+console.log("We done the magic. Now running on port 3000");
 module.exports = app;
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
