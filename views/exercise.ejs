@@ -19,23 +19,15 @@
     
     
         <div class="row">
-            <div class="col-md-4"><h2>Question</h2></div>
-            <div class="col-md-4"><h2>Input SQL</h2></div>
-            <div class="col-md-4"><h2>Output SQL</h2></div>
-        </div>
-        <div class="row">
-            <div class="col-md-4"><p><%= question %></p></div>
-            <div class="col-md-4"><p>
-                <form action="/exercise/<%= exID %>" method="post">
+            <div class="col-md-4"><h2>Question</h2><p><%= question %></p></div>
+            <div class="col-md-4"><h2>Input SQL</h2><form action="/exercise/<%= exID %>" method="post">
                     <div class="form-group">
                         <textarea name="sql" class="form-control" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-            </p></div>
-            <div class="col-md-4"><p><%= output %></p></div>
+                </form></div>
+            <div class="col-md-4"><h2>Output SQL</h2><p><%= output %></p></div>
         </div>
-
         <div class="text-center footer">
             <p>Built by Adam McGhie</p>
         </div>
