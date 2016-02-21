@@ -326,6 +326,7 @@ module.exports = function(passport) {
             if (err)
                 return done(err);
 
+            console.log(profile)
             if (user) {
 
                 // if there is a user id already but no token (user was linked at one point and then removed)
