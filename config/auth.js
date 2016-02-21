@@ -23,7 +23,7 @@ module.exports = {
     'gitlab' : { 
         'appkey' : '765a87ce6010c781a103d0613d5e9ebfefefe0f33f392779ec386f2c652459e6',
         'secretkey' : 'b7e5afa06daa852cf55d52ce9f7766934c227c5379d71d1c783dc6de58571b37',
-        'host' : 'https://gitlab.strathtech.co.uk/',
+        'host' : 'https://gitlab.strathtech.co.uk',
         'callbackURL' : 'https://dbls.ovh/login/auth/strathtech/callback'
     }
 };
