@@ -35,7 +35,7 @@ var userSchema = mongoose.Schema({
     gitlab           : {
         id           : String
         
-    }
+    },
     exercise : {
         id           : String,
         mark         : Number

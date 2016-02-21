@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
         app.get('/login/auth/strathtech',
             passport.authenticate('gitlab', { failureRedirect: '/login/', failureFlash: true }),
             function(req, res) {
-                res.redirect('/login/');
+                res.redirect('/profile');
             }
         );
 
@@ -92,7 +92,7 @@ module.exports = function(app, passport) {
         app.post('/login/auth/strathtech/callback',
             passport.authenticate('gitlab', { failureRedirect: '/login/', failureFlash: true }),
             function(req, res) {
-                res.redirect('/login/');
+                res.redirect('/profile');
             }
         );
 
