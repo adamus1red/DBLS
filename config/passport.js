@@ -3,6 +3,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var SamlStrategy = require('passport-saml').Strategy;
+var GitlabStrategy = require('passport-gitlab').Strategy;
 
 // load up the user model
 var User       = require('../models/user');
@@ -313,8 +314,7 @@ module.exports = function(passport) {
       })
     );
     // Gitlab StrathTECH
-    var GitlabStrategy = require('passport-gitlab').Strategy;
-
+    
     passport.use(new GitlabStrategy({
         clientID: configAuth.gitlab.appkey,
         clientSecret: configAuth.gitlab.secretkey,
