@@ -10,7 +10,7 @@ var db = new sqlite3.Database('./exercise.db');
 
 /* GET exercise listing. */
 router.get('/:eid', function(req, res, next) {
-    if(req.user){
+    if(req.isAuthenticated()){
         db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid, function(err, row){
             if(err){
                 console.err(err);
@@ -28,7 +28,7 @@ router.get('/:eid', function(req, res, next) {
 
 router.post('/:eid', function(req,res,next){
     console.log(req.body);
-    if(req.user){
+    if(req.isAuthenticated()){
         db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid, function(err, row){
             if(err){
                 console.err(err);

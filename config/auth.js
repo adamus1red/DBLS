@@ -16,9 +16,14 @@ module.exports = {
     },
 
     'CISAuth' : {
-        'clientID'      : 'your-secret-clientID-here',
-        'clientSecret'  : 'your-client-secret-here',
-        'callbackURL'   : 'https://dbls.ovh/login/auth/saml/callback'
+        'issuer'      : 'CIS-LDAP',
+        'host'  : 'https://local.cis.strath.ac.uk/simplesamlphp/saml2/idp/SSOService.php',
+        'path'   : 'http://127.0.0.1:3000/login/auth/saml/callback'
+    },
+    'gitlab' : { 
+        'appkey' : '765a87ce6010c781a103d0613d5e9ebfefefe0f33f392779ec386f2c652459e6',
+        'secretkey' : 'b7e5afa06daa852cf55d52ce9f7766934c227c5379d71d1c783dc6de58571b37',
+        'host' : 'https://gitlab.strathtech.co.uk/',
+        'callbackURL' : 'https://dbls.ovh/login/auth/strathtech/callback'
     }
-
 };

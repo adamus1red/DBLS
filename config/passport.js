@@ -2,6 +2,7 @@
 var LocalStrategy    = require('passport-local').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var SamlStrategy = require('passport-saml').Strategy;
 
 // load up the user model
 var User       = require('../models/user');
@@ -295,4 +296,35 @@ module.exports = function(passport) {
 
     }));
 
+    // CIS SAML
+    passport.use(new SamlStrategy(
+      {
+        path: configAuth.CISAuth.callbackURL,
+        entryPoint: configAuth.CISAuth.host,
+        issuer: configAuth.CISAuth.issuer
+      },
+      function(profile, done) {
+        findByEmail(profile.email, function(err, user) {
+          if (err) {
+            return done(err);
+          }
+          return done(null, user);
+        });
+      })
+    );
+    // Gitlab StrathTECH
+    var GitlabStrategy = require('passport-gitlab').Strategy;
+
+    passport.use(new GitlabStrategy({
+        clientID: configAuth.gitlab.appkey,
+        clientSecret: configAuth.gitlab.secretkey,
+        gitlabURL : configAuth.gitlab.host,
+        callbackURL: configAuth.gitlab.callbackURL
+      },
+      function(token, tokenSecret, profile, done) {
+        User.findOrCreate({ id: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      }
+    ));
 };

@@ -77,6 +77,24 @@ module.exports = function(app, passport) {
                 res.redirect('/login/');
             }
         );
+        
+    // GITLAB OAUTH ---------------------------------
+
+        // send to CIS SAML to do the authentication
+        app.get('/login/auth/strathtech',
+            passport.authenticate('gitlab', { failureRedirect: '/login/', failureFlash: true }),
+            function(req, res) {
+                res.redirect('/login/');
+            }
+        );
+
+        // the callback after google has authenticated the user
+        app.post('/login/auth/strathtech/callback',
+            passport.authenticate('gitlab', { failureRedirect: '/login/', failureFlash: true }),
+            function(req, res) {
+                res.redirect('/login/');
+            }
+        );
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
