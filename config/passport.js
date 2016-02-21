@@ -331,8 +331,8 @@ module.exports = function(passport) {
                 // if there is a user id already but no token (user was linked at one point and then removed)
                 if (!user.gitlab.token) {
                     user.gitlab.token = token;
-                    user.gitlab.name  = profile.displayName;
-                    user.gitlab.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+                    //user.gitlab.name  = profile.displayName;
+                    //user.gitlab.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
                     user.save(function(err) {
                         if (err)
@@ -348,7 +348,7 @@ module.exports = function(passport) {
 
                 newUser.gitlab.id    = profile.id;
                 newUser.gitlab.token = token;
-                newUser.gitlab.name  = profile.displayName;
+                //newUser.gitlab.name  = profile.displayName;
                 newUser.gitlab.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
                 newUser.save(function(err) {
