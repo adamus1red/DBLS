@@ -41,7 +41,7 @@ router.post('/:eid', function(req,res,next){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
                 //console.log();
-                var db2 = new sqlite3.Database(dir + "/"+ req.user._id + req.params.eid + ".db");
+                var db2 = new sqlite3.Database(saveOut(req, row.testDB));
                 db2.get(req.body.sql, function(err, row2){
                     if(err){
                         res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
@@ -53,7 +53,7 @@ router.post('/:eid', function(req,res,next){
                     
                 });
 
-                saveOut(req, row.testDB)
+                
                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
             }
             
@@ -74,7 +74,7 @@ function saveOut(req, data) {
         if(err) {
             return console.log(err);
         }
-        console.log("The file was saved! " +  dir + req.user._id + req.params.eid);
+        console.log("The file was saved! " +  dir + "/"+ req.user._id + req.params.eid + ".db"  );
     }); 
-
+    return dir + "/"+ req.user._id + req.params.eid + ".db";
 }
