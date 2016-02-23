@@ -46,7 +46,7 @@ router.post('/:eid', function(req,res,next){
                         res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: row});
                     }
                     
-                }
+                });
             }
             
         });
