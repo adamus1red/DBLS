@@ -52,6 +52,7 @@ router.post('/:eid', function(req,res,next){
                     }
                     
                 });
+                fs.unlink(dir + "/"+ req.user._id + req.params.eid + ".db");
                 //res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
             }
             
