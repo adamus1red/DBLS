@@ -74,7 +74,7 @@ function saveOut(req, data) {
         if(err) {
             return console.log(err);
         }
-        console.log("The file was saved! " +  dir + req.user._id + req.params.eid, data);
+        console.log("The file was saved! " +  dir + req.user._id + req.params.eid);
     }); 
 
 }
