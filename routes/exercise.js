@@ -49,14 +49,8 @@ router.post('/:eid', function(req,res,next){
                     }
                     
                 }); */
-                fs.writeFile("/tmp/dbls/" + req.user._id + "/" + req.param.eid, row.testDB, function(err) {
-                    if(err) {
-                        return console.log(err);
-                    }
 
-                    console.log("The file was saved!");
-                }); 
-
+                saveOut(req, row.testDB)
                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
             }
             
@@ -67,3 +61,18 @@ router.post('/:eid', function(req,res,next){
 });
 
 module.exports = router;
+
+function saveOut(req, data) {
+    var dir = './tmp';
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+    fs.writeFile(dir + req.user._id + req.params.eid, data, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    }); 
+
+}
