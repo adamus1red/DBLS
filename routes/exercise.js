@@ -42,19 +42,17 @@ router.post('/:eid', function(req,res,next){
             } else {
                 //console.log();
                 var db2 = new sqlite3.Database(saveOut(req, row.testDB));
-                db2.get(req.body.sql, function(err, row2){
+                db2.get(req.body.sql, function(err, userRow){
                     if(err){
                         res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
-                    } else if (typeof row2 === 'undefined') {
+                    } else if (typeof userRow === 'undefined') {
                         res.render('error.ejs', {message: "Something went horribly wrong", error: {status: "QE403",stack: "Something hit the fan and blew everywhere."}});
                     } else {
-                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: row2});
+                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: userRow});
                     }
                     
                 });
-
-                
-                res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
+                //res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
             }
             
         });
