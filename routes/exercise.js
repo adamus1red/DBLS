@@ -8,6 +8,9 @@ var util = require('util')
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./exercise.db');
 var fs = require('fs');
+var dir = './tmp';
+
+
 
 /* GET exercise listing. */
 router.get('/:eid', function(req, res, next) {
@@ -38,17 +41,17 @@ router.post('/:eid', function(req,res,next){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
                 //console.log();
-                /*var db2 = new sqlite3.Database(row.testDB);
+                var db2 = new sqlite3.Database(dir + "/"+ req.user._id + req.params.eid + ".db");
                 db2.get(req.body.sql, function(err, row2){
                     if(err){
                         res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
                     } else if (typeof row2 === 'undefined') {
                         res.render('error.ejs', {message: "Something went horribly wrong", error: {status: "QE403",stack: "Something hit the fan and blew everywhere."}});
                     } else {
-                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : ro w.question, output: row2});
+                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: row2});
                     }
                     
-                }); */
+                });
 
                 saveOut(req, row.testDB)
                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
@@ -63,12 +66,11 @@ router.post('/:eid', function(req,res,next){
 module.exports = router;
 
 function saveOut(req, data) {
-    var dir = './tmp';
 
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
     }
-    fs.writeFile(dir + req.user._id + req.params.eid, data, function(err) {
+    fs.writeFile(dir + "/"+ req.user._id + req.params.eid + ".db", data, function(err) {
         if(err) {
             return console.log(err);
         }
