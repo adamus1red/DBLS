@@ -41,7 +41,8 @@ router.post('/:eid', function(req,res,next){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
                 //console.log();
-                var db2 = new sqlite3.Database(saveOut(req, row.testDB));
+                var testDBFile = saveOut(req, row.testDB);
+                var db2 = new sqlite3.Database(testDBFile);
                 db2.all(req.body.sql, function(err, userRow){
                     if(err){
                         res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
@@ -52,8 +53,7 @@ router.post('/:eid', function(req,res,next){
                     }
                     
                 });
-                fs.unlink(dir + "/"+ req.user._id + req.params.eid + ".db");
-                //res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
+                fs.unlink(testDBFile);
             }
             
         });
