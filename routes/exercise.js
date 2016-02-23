@@ -17,7 +17,7 @@ router.get('/:eid', function(req, res, next) {
             } else if (typeof row === 'undefined'){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
-                res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: ""});
+                res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: ""});
             }
             
         });
