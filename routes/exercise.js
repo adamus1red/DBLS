@@ -7,6 +7,7 @@ var router = express.Router();
 var util = require('util')
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./exercise.db');
+var fs = require('fs');
 
 /* GET exercise listing. */
 router.get('/:eid', function(req, res, next) {
@@ -36,7 +37,7 @@ router.post('/:eid', function(req,res,next){
             } else if (typeof row === 'undefined'){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
-                console.log(row.testDB);
+                //console.log();
                 /*var db2 = new sqlite3.Database(row.testDB);
                 db2.get(req.body.sql, function(err, row2){
                     if(err){
@@ -48,6 +49,14 @@ router.post('/:eid', function(req,res,next){
                     }
                     
                 }); */
+                fs.writeFile("/tmp/dbls/" + req.user._id + "/" + req.param.eid, row.testDB, function(err) {
+                    if(err) {
+                        return console.log(err);
+                    }
+
+                    console.log("The file was saved!");
+                }); 
+
                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: req.body.sql});
             }
             
