@@ -37,7 +37,16 @@ router.post('/:eid', function(req,res,next){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
                 var db2 = new sqlite3.Database(row.testDB);
-                res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: req.body.sql});
+                db2.get(req.body.sql, function(err, row){
+                    if(err){
+                        res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
+                    } else if (typeof row === 'undefined') {
+                        res.render('error.ejs', {message: "Something went horribly wrong", error: {status: "QE403",stack: "Something hit the fan and blew everywhere."}});
+                    } else {
+                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: row});
+                    }
+                    
+                }
             }
             
         });
