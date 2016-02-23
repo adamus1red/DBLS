@@ -28,6 +28,7 @@ router.get('/:eid', function(req, res, next) {
 
 router.post('/:eid', function(req,res,next){
     console.log(req.body);
+    
     if(req.isAuthenticated()){
         db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid, function(err, row){
             if(err){
@@ -35,6 +36,7 @@ router.post('/:eid', function(req,res,next){
             } else if (typeof row === 'undefined'){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
             } else {
+                var db2 = new sqlite3.Database(row.testDB);
                 res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: req.body.sql});
             }
             
