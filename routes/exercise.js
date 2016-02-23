@@ -42,7 +42,7 @@ router.post('/:eid', function(req,res,next){
             } else {
                 //console.log();
                 var db2 = new sqlite3.Database(saveOut(req, row.testDB));
-                db2.exec(req.body.sql, function(err, userRow){
+                db2.all(req.body.sql, function(err, userRow){
                     if(err){
                         res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
                     } else if (typeof userRow === 'undefined') {
