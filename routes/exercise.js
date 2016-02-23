@@ -49,6 +49,8 @@ router.post('/:eid', function(req,res,next){
                     } else if (typeof userRow === 'undefined') {
                         res.render('error.ejs', {message: "Something went horribly wrong", error: {status: "QE403",stack: "Something hit the fan and blew everywhere."}});
                     } else {
+                        /* var db3 = new sqlite3.Database(testDBFile);
+                        db3.all(row.) */
                         res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4)});
                     }
                     
