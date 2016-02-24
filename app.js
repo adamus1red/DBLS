@@ -50,21 +50,6 @@ mongoose.connect(config.dburl); // connect to our database
 require('./config/passport')(passport); // pass passport for configuration
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-passport.use(new SamlStrategy(
-  {
-    path: '/login/auth/saml/callback',
-    entryPoint: 'https://local.cis.strath.ac.uk/simplesamlphp/module.php/core/loginuserpass.php',
-    issuer: 'passport-saml'
-  },
-  function(profile, done) {
-    findByEmail(profile.email, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      return done(null, user);
-    });
-  })
-);
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', routes);

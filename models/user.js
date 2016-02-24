@@ -9,12 +9,6 @@ var userSchema = mongoose.Schema({
         email        : String,
         password     : String,
     },
-    facebook         : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
-    },
     twitter          : {
         id           : String,
         token        : String,
@@ -34,7 +28,6 @@ var userSchema = mongoose.Schema({
     },
     gitlab           : {
         id           : String
-        
     },
     exercise : {
         id           : String,
