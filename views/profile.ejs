@@ -3,97 +3,96 @@
 
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+        <div class="col s6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><span class="fa fa-user"></span> Local</span>
 
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
-                    
-                    <a href="/login/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                    <a href="/login/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-
+                    <% if (user.local.email) { %>
+                        <p>
+                            <strong>id</strong>: <%= user._id %><br>
+                            <strong>email</strong>: <%= user.local.email %><br>
+                            <strong>password</strong>: <%= user.local.password %>
+                        </p>
+                </div>
+                <div class="card-action">
+                        <a href="/login/unlink/local">Unlink</a>
+                    <% } else { %>
+                        <a href="/login/connect/local">Connect Local</a>
+                    <% } %>
+                </div>
             </div>
         </div>
 
         <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
+        <div class="col s6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">
+                    </span>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
 
         <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-info"><i class="fa fa-twitter"></i> Twitter</h3>
+        <div class="col s6">
+           <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><i class="fa fa-twitter"></i> Twitter</span>
 
-                <% if (user.twitter.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.twitter.id %><br>
-                        <strong>token</strong>: <%= user.twitter.token %><br>
-                        <strong>display name</strong>: <%= user.twitter.displayName %><br>
-                        <strong>username</strong>: <%= user.twitter.username %>
-                    </p>
-
-                    <a href="/login/unlink/twitter" class="btn btn-info">Unlink</a>
-                <% } else { %>
-                    <a href="/login/connect/twitter" class="btn btn-info">Connect Twitter</a>
-                <% } %>
-
+                    <% if (user.twitter.token) { %>
+                        <p>
+                            <strong>id</strong>: <%= user.twitter.id %><br>
+                            <strong>token</strong>: <%= user.twitter.token %><br>
+                            <strong>display name</strong>: <%= user.twitter.displayName %><br>
+                            <strong>username</strong>: <%= user.twitter.username %>
+                        </p>
+                </div>
+                <div class="card-action">
+                        <a href="/login/unlink/twitter">Unlink</a>
+                    <% } else { %>
+                        <a href="/login/connect/twitter">Connect Twitter</a>
+                    <% } %>
+                </div>
             </div>
         </div>
 
         <!-- GOOGLE INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-danger"><i class="fa fa-google-plus"></i> Google+</h3>
+        <div class="col s6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><i class="fa fa-google-plus"></i> Google+</span>
 
-                <% if (user.google.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.google.id %><br>
-                        <strong>token</strong>: <%= user.google.token %><br>
-                        <strong>email</strong>: <%= user.google.email %><br>
-                        <strong>name</strong>: <%= user.google.name %>
-                    </p>
-
-                    <a href="/login/unlink/google" class="btn btn-danger">Unlink</a>
-                <% } else { %>
-                    <a href="/login/connect/google" class="btn btn-danger">Connect Google</a>
-                <% } %>
-
-            </div>
-        </div>
-    </div class="row">
-        <div class="col-sm-12">
-            <div class="well">
-                <div class="list-group">
-                    <a href="/exercise/1" class="list-group-item">/exercise/1</a>
-                    <a href="/exercise/2" class="list-group-item">/exercise/2</a>
-                    <a href="/exercise/3" class="list-group-item">/exercise/3</a>
-                    <a href="/exercise/4" class="list-group-item">/exercise/4</a>
-                    <a href="/exercise/5" class="list-group-item">/exercise/5</a>
+                    <% if (user.google.token) { %>
+                        <p>
+                            <strong>id</strong>: <%= user.google.id %><br>
+                            <strong>token</strong>: <%= user.google.token %><br>
+                            <strong>email</strong>: <%= user.google.email %><br>
+                            <strong>name</strong>: <%= user.google.name %>
+                        </p>
+                </div>
+                <div class="card-action">
+                        <a href="/login/unlink/google">Unlink</a>
+                    <% } else { %>
+                        <a href="/login/connect/google">Connect Google</a>
+                    <% } %>
                 </div>
             </div>
         </div>
-    <div>
-    
-    
+    </div> 
+    <div class="collection">
+        <a href="/exercise/1" class="collection-item">/exercise/1</a>
+        <a href="/exercise/2" class="collection-item">/exercise/2</a>
+        <a href="/exercise/3" class="collection-item">/exercise/3</a>
+        <a href="/exercise/4" class="collection-item">/exercise/4</a>
+        <a href="/exercise/5" class="collection-item">/exercise/5</a>
     </div>
     <% include shared/footer.ejs %>
 </div>
