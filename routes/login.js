@@ -136,10 +136,10 @@ module.exports = function(app, passport) {
             }));
         
     // GITLAB connection
-        app.get('/login/connect/gitlab', passport.authorize('gitlab', { scope : ['profile', 'email'] }));
+        app.get('/login/connect/strathtech', passport.authorize('gitlab', { scope : ['profile', 'email'] }));
 
         // the callback after google has authorized the user
-        app.get('/login/connect/gitlab/callback',
+        app.get('/login/connect/strathtech/callback',
             passport.authorize('gitlab', {
                 successRedirect : '/profile',
                 failureRedirect : '/login'
