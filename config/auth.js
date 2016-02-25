@@ -4,9 +4,9 @@
 module.exports = {
 
     'twitterAuth' : {
-        'consumerKey'       : 'nKyhvZ6WxBGmkTN3y4lMVo5yo',
-        'consumerSecret'    : 'cs68GXSWKuWgSdXH22ELXgYFCD2yi1FLVXVQowmJFXITVjpd6f',
-        'callbackURL'       : 'https://dbls-adamus1red.c9users.io/login/auth/twitter/callback'
+        'consumerKey'       : 'TK79zlkH5SxjYtmDOvZ6pNaPF',
+        'consumerSecret'    : 'v38OzcwF7UyzKJX3s5LxfRjgtgrqOqPYKkRjT5LF8taXb24jcg',
+        'callbackURL'       : 'https://dbls.ovh/login/auth/twitter/callback'
     },
 
     'googleAuth' : {
@@ -18,7 +18,7 @@ module.exports = {
     'CISAuth' : {
         'issuer'      : 'CIS-LDAP',
         'host'  : 'https://local.cis.strath.ac.uk/simplesamlphp/saml2/idp/SSOService.php',
-        'path'   : 'http://127.0.0.1:3000/login/auth/saml/callback'
+        'path'   : 'http://dbls.ovh/login/auth/saml/callback'
     },
     'gitlab' : { 
         'appkey' : '765a87ce6010c781a103d0613d5e9ebfefefe0f33f392779ec386f2c652459e6',
