@@ -2,14 +2,14 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span class="fa fa-anchor"></span> Profile</h1>
     </div>
 
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
         <div class="col s6">
-            <div class="card blue-grey darken-1">
+            <div class="card hoverable blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title"><span class="fa fa-user"></span> Local</span>
 
@@ -23,7 +23,9 @@
                 <div class="card-action">
                         <a href="/login/unlink/local">Unlink</a>
                     <% } else { %>
+                <div class="card-action">
                         <a href="/login/connect/local">Connect Local</a>
+                </div>
                     <% } %>
                 </div>
             </div>
@@ -31,7 +33,7 @@
 
         <!-- FACEBOOK INFORMATION -->
         <div class="col s6">
-            <div class="card blue-grey darken-1">
+            <div class="card hoverable blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">
                     </span>
@@ -43,7 +45,7 @@
 
         <!-- TWITTER INFORMATION -->
         <div class="col s6">
-           <div class="card blue-grey darken-1">
+           <div class="card hoverable blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title"><i class="fa fa-twitter"></i> Twitter</span>
 
@@ -58,7 +60,9 @@
                 <div class="card-action">
                         <a href="/login/unlink/twitter">Unlink</a>
                     <% } else { %>
+                <div class="card-action">
                         <a href="/login/connect/twitter">Connect Twitter</a>
+                </div>
                     <% } %>
                 </div>
             </div>
@@ -66,7 +70,7 @@
 
         <!-- GOOGLE INFORMATION -->
         <div class="col s6">
-            <div class="card blue-grey darken-1">
+            <div class="card hoverable blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title"><i class="fa fa-google-plus"></i> Google+</span>
 
@@ -81,13 +85,18 @@
                 <div class="card-action">
                         <a href="/login/unlink/google">Unlink</a>
                     <% } else { %>
+                <div class="card-action">
                         <a href="/login/connect/google">Connect Google</a>
+                    </div>
                     <% } %>
                 </div>
             </div>
         </div>
     </div> 
-    <div class="collection">
+    <div class="progress">
+        <div class="determinate" style="width: 40%"></div>
+    </div>
+    <div class="collection hoverable">
         <a href="/exercise/1" class="collection-item">/exercise/1</a>
         <a href="/exercise/2" class="collection-item">/exercise/2</a>
         <a href="/exercise/3" class="collection-item">/exercise/3</a>
