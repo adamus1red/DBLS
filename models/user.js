@@ -27,7 +27,10 @@ var userSchema = mongoose.Schema({
         password     : String
     },
     gitlab           : {
-        id           : String
+        id           : String,
+        displayName  : String,
+        token        : String,
+        email        : String
     },
     exercise : {
         id           : String,
