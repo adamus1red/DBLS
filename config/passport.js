@@ -329,6 +329,7 @@ module.exports = function(passport) {
                     
                     if (user) {
                         if (!user.gitlab.id) {
+                            console.log("[DEBUG] - Updating gitlab user info")
                             user.gitlab.token       = token;
                             user.gitlab.email       = profile.emails[0];
                             user.gitlab.displayName = profile.displayName;
@@ -340,9 +341,11 @@ module.exports = function(passport) {
                                 return done(null, user);
                             });
                         }
+                        
                         return done(null, user); // user found, return that user
                     } else {
                         var newUser                 = new User();
+                        console.log("[DEBUG] - Creating new gitlab user")
 
                         newUser.gitlab.id          = profile.id;
                         newUser.gitlab.token       = token;
@@ -364,7 +367,7 @@ module.exports = function(passport) {
                 
                 // user already exists and is logged in, we have to link accounts
                 var user                 = req.user; // pull the user out of the session
-
+                console.log("[DEBUG] - Linking gitlab to account")
                 user.gitlab.id          = profile.id;
                 user.gitlab.token       = token;
                 user.gitlab.email    = profile.emails[0];
