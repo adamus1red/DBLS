@@ -5,14 +5,36 @@
             <div class="col l6 s12">
                 <h5 class="white-text">Footer Content</h5>
                 <p class="grey-text text-lighten-4">Please rate!<div data-rodeo></div></p>
+                <p><div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+/*this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable*/
+/*this.page.identifier = ; // Replace PAGE_IDENTIFIER with your page's unique identifier variable*/
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//databaselearningsystem.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="waves-effect waves-light btn-flat modal-trigger" href="#supportchat">Support Chat</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#supportchat">Support Chat</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#!">Link 4</a></li>
                 </ul>
             </div>
         </div>
@@ -63,9 +85,11 @@
     s.type = 'text/javascript';
     s.src = '//cdn.emoji.rodeo/dist.js';
     d.appendChild(s);
-    $(".button-collapse").sideNav();
-    $(".dropdown-button").dropdown();
-    $('.modal-trigger').leanModal();
+    $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $(".dropdown-button").dropdown();
+        $('.modal-trigger').leanModal();
+    });
 </script>
 
 </body>

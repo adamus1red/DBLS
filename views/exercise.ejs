@@ -2,20 +2,54 @@
 <script>hljs.initHighlightingOnLoad();</script>
     <div class="container">
 
-        <div class="page-header text-center">
+        <div class="page-header center">
             <h1><i class="fa fa-terminal"></i> Exercise</h1>
         </div>
     
-    
+        <% if (typeof answerState === "undefined") {  %>
+        <div class="row teal lighten-1 z-depth-3">
+            <div class="col offset-s2 center s8">
+                    <span class=" flow-text grey-text text-lighten-4 ">This Shouldn't happen please contact an administrator</span>
+            </div>
+        </div>
+        <% } else if (answerState === 2) { %>
+        <div class="row green lighten-1 z-depth-3">
+            <div class="col offset-s2 center s8">
+                    <span class=" flow-text grey-text text-lighten-4 ">Answer correct!</span>
+            </div>
+        </div>
+        <% } else if (answerState === 3) { %>
+        <div class="row red darken-1 z-depth-3">
+            <div class="col offset-s2 center s8">
+                    <span class=" flow-text grey-text text-lighten-4 ">SQL Error</span>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="row red lighten-1 z-depth-3">
+            <div class="col offset-s2 center s8">
+                    <span class=" flow-text grey-text text-lighten-4 ">Answer not correct</span>
+            </div>
+        </div>
+        <% } %>
         <div class="row">
-            <div class="col-md-4"><h2>Question</h2><p><%- question %></p></div>
-            <div class="col-md-4"><h2>Input SQL</h2><form action="/exercise/<%= exID %>" method="post">
-                    <div class="form-group">
-                        <textarea name="sql" class="form-control" rows="3"></textarea>
+            <div class="col m4"><h2>Question</h2><p><%- question %></p></div>
+            <div class="col m4">
+                <h2>Input SQL</h2>
+                <form action="/exercise/<%= exID %>" method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <%if (typeof sentValue !== "undefined") { %>
+                            <textarea name="sql" class="materialize-textarea" rows="3" ><%= sentValue %></textarea>
+                            <% } else { %>
+                            <textarea name="sql" class="materialize-textarea" rows="3"></textarea>
+                            <% } %>
+                            <label for="textarea1">SQL</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </form></div>
-            <div class="col-md-4">
+                </form>
+            </div>
+            <div class="col m4">
                 <h2>Output SQL</h2>
                 <p><pre><code class="json"><%= output %></code></pre></p>
             </div>
