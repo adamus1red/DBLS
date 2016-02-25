@@ -19,9 +19,9 @@ router.get('/:eid', function(req, res, next) {
             if(err){
                 console.err(err);
             } else if (typeof row === 'undefined'){
-                res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
+                res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}, user : req.user});
             } else {
-                res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: ""});
+                res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: "", user : req.user});
             }
             
         });
@@ -38,20 +38,26 @@ router.post('/:eid', function(req,res,next){
             if(err){
                 console.err(err);
             } else if (typeof row === 'undefined'){
-                res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}});
+                res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one", user : req.user}});
             } else {
                 //console.log();
                 var testDBFile = saveOut(req, row.testDB);
                 var db2 = new sqlite3.Database(testDBFile);
                 db2.all(req.body.sql, function(err, userRow){
                     if(err){
-                        res.render('exercise.ejs', {exID: req.params.eid, question : row.question, output: err});
+                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(err, null, 4), user : req.user, sentValue: req.body.sql, answerState : 3});
                     } else if (typeof userRow === 'undefined') {
-                        res.render('error.ejs', {message: "Something went horribly wrong", error: {status: "QE403",stack: "Something hit the fan and blew everywhere."}});
+                        res.render('error.ejs', {message: "Something went horribly wrong", error: {status: "QE403",stack: "Something hit the fan and blew everywhere.", user : req.user}});
                     } else {
-                        /* var db3 = new sqlite3.Database(testDBFile);
-                        db3.all(row.) */
-                        res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4)});
+                        db2.all(row.testQuery, function(err, correctRow) {
+                            var userAnswer = JSON.stringify(userRow), correctAnswer = JSON.stringify(correctRow);
+                            if(userAnswer == correctAnswer) {
+                                res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4) + "You done correct", user : req.user, sentValue: req.body.sql, answerState : 2});
+                            } else {
+                                res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4) + "Wrong Answer", user : req.user, sentValue: req.body.sql, answerState : 1});
+                            }
+                        });
+                        //res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4), user : req.user, sentValue: req.body.sql});
                     }
                     
                 });

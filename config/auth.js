@@ -4,9 +4,9 @@
 module.exports = {
 
     'twitterAuth' : {
-        'consumerKey'       : 'TK79zlkH5SxjYtmDOvZ6pNaPF',
-        'consumerSecret'    : 'v38OzcwF7UyzKJX3s5LxfRjgtgrqOqPYKkRjT5LF8taXb24jcg',
-        'callbackURL'       : 'https://dbls.ovh/login/auth/twitter/callback'
+        'consumerKey'       : 'nKyhvZ6WxBGmkTN3y4lMVo5yo',
+        'consumerSecret'    : 'cs68GXSWKuWgSdXH22ELXgYFCD2yi1FLVXVQowmJFXITVjpd6f',
+        'callbackURL'       : 'https://dbls-adamus1red.c9users.io/login/auth/twitter/callback'
     },
 
     'googleAuth' : {

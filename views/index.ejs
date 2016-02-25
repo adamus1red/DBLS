@@ -1,17 +1,31 @@
 <% include shared/head.ejs %>
-<div class="container">
+<div class="container center">
 
     <div class="jumbotron text-center">
         <h1><span class="fa fa-lock"></span> Database Learning System</h1>
 
         <p>Login or Register with:</p>
-
-        <a href="/login" class="btn btn-default"><i class="fa fa-user"></i> Local Login</a>
-        <a href="/login/signup" class="btn btn-default"><i class="fa fa-user"></i> Local Signup</a>
-        <a href="/login/auth/twitter" class="btn btn-info"><i class="fa fa-twitter"></i> Twitter</a>
-        <a href="/login/auth/google" class="btn btn-danger"><i class="fa fa-google-plus"></i> Google+</a>
-        <a href="/login/auth/strathtech" class="btn btn-danger"><i class="fa fa-git"></i> StrathTECH</a>
-        <a href="/login/auth/saml" class="btn btn-danger"><i class="fa fa-google-plus"></i> CIS SAML</a>
+        
+        <div class="row">
+            <div class="col s2">
+                <a href="/login" class="btn btn-default"><i class="fa fa-user"></i> Local Login</a>
+            </div>
+            <div class="col s2">
+                <a href="/login/signup" class="btn btn-default"><i class="fa fa-user"></i> Local Signup</a>
+            </div>
+            <div class="col s2">
+                <a href="/login/auth/twitter" class="btn btn-info"><i class="fa fa-twitter"></i> Twitter</a>
+            </div>
+            <div class="col s2">
+                <a href="/login/auth/google" class="btn btn-danger"><i class="fa fa-google-plus"></i> Google+</a>
+            </div>
+            <div class="col s2">
+                <a href="/login/auth/strathtech" class="btn btn-danger"><i class="fa fa-git"></i> StrathTECH</a>
+            </div>
+            <div class="col s2">
+                <a href="/login/auth/saml" class="btn btn-danger"><i class="fa fa-google-plus"></i> CIS SAML</a>
+            </div>
+        </div>
     </div>
 
     <% include shared/footer.ejs %>
