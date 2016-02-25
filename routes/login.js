@@ -95,12 +95,6 @@ module.exports = function(app, passport) {
                 res.redirect('/profile');
             }
         );
-        app.get('/login/auth/strathtech/callback',
-            passport.authenticate('gitlab', { failureRedirect: '/login/', failureFlash: true }),
-            function(req, res) {
-                res.redirect('/profile');
-            }
-        );
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
@@ -139,6 +133,16 @@ module.exports = function(app, passport) {
             passport.authorize('google', {
                 successRedirect : '/profile',
                 failureRedirect : '/login/'
+            }));
+        
+    // GITLAB connection
+        app.get('/login/connect/gitlab', passport.authorize('gitlab', { scope : ['profile', 'email'] }));
+
+        // the callback after google has authorized the user
+        app.get('/login/connect/gitlab/callback',
+            passport.authorize('gitlab', {
+                successRedirect : '/profile',
+                failureRedirect : '/login'
             }));
 
 // =============================================================================

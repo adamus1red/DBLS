@@ -305,12 +305,12 @@ module.exports = function(passport) {
         issuer: configAuth.CISAuth.issuer
       },
       function(profile, done) {
-        findByEmail(profile.email, function(err, user) {
+        User.findOrCreate({ 'cis-saml.email' : profile.email}, function(err, user) {
           if (err) {
             return done(err);
           }
           return done(null, user);
-        });
+        })
       })
     );
     // Gitlab StrathTECH
@@ -320,46 +320,63 @@ module.exports = function(passport) {
         clientSecret: configAuth.gitlab.secretkey,
         gitlabURL : configAuth.gitlab.host,
         callbackURL: configAuth.gitlab.callbackURL
-      },
-      function(token, tokenSecret, profile, done) {
-        User.findOrCreate({ 'gitlab.id': profile.id }, function (err, user) {
-            if (err)
-                return done(err);
-
-            console.log(profile)
-            if (user) {
-
-                // if there is a user id already but no token (user was linked at one point and then removed)
-                if (!user.gitlab.token) {
-                    user.gitlab.token = token;
-                    //user.gitlab.name  = profile.displayName;
-                    //user.gitlab.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
-
-                    user.save(function(err) {
-                        if (err)
-                            return done(err);
+    },
+        function(req, token, tokenSecret, profile, done) {
+            if (!req.user) {
+                User.findOne({ 'gitlab.id': profile.id }, function (err, user) {
+                    if (err)
+                        return done(err);
+                    
+                    if (user) {
+                        if (!user.gitlab.id) {
+                            user.gitlab.token       = token;
+                            user.gitlab.email       = profile.emails[0];
+                            user.gitlab.displayName = profile.displayName;
                             
-                        return done(null, user);
-                    });
-                }
+                            user.save(function(err) {
+                                if (err)
+                                    return done(err);
+                                    
+                                return done(null, user);
+                            });
+                        }
+                        return done(null, user); // user found, return that user
+                    } else {
+                        var newUser                 = new User();
 
-                return done(null, user);
+                        newUser.gitlab.id          = profile.id;
+                        newUser.gitlab.token       = token;
+                        newUser.gitlab.email       = profile.emails[0];
+                        newUser.gitlab.displayName = profile.displayName;
+
+                        newUser.save(function(err) {
+                            if (err)
+                                return done(err);
+                                
+                            return done(null, newUser);
+                        });
+                    }
+                    
+                    console.log(JSON.stringify(profile, null, 4));
+                    return done(err, user);
+                });
             } else {
-                var newUser          = new User();
+                
+                // user already exists and is logged in, we have to link accounts
+                var user                 = req.user; // pull the user out of the session
 
-                newUser.gitlab.id    = profile.id;
-                newUser.gitlab.token = token;
-                //newUser.gitlab.name  = profile.displayName;
-                newUser.gitlab.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
-
-                newUser.save(function(err) {
+                user.gitlab.id          = profile.id;
+                user.gitlab.token       = token;
+                user.gitlab.email    = profile.emails[0];
+                user.gitlab.displayName = profile.displayName;
+                user.save(function(err) {
                     if (err)
                         return done(err);
                         
-                    return done(null, newUser);
+                    return done(null, user);
                 });
-                }
-            });
+            }
+            
         }
     ));
 };
