@@ -14,10 +14,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# Get the code
-git clone https://gitlab.strathtech.co.uk/amcghie/dbls.git
-cd dbls
-
 # Get the outrageous amount of libs this requires
 npm install 
 npm install -g bower
