@@ -17,7 +17,7 @@ fi
 # Get the outrageous amount of libs this requires
 npm install 
 npm install -g bower
-bower install
+bower install --allow-root
 
 for mod in $BOWER_MODULES
 do
