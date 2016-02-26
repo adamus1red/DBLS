@@ -1,0 +1,19 @@
+{
+  "name": "dbls",
+  "description": "Database Learning System",
+  "main": "",
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://dbls.ovh",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#^0.97.5"
+  }
+}

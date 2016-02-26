@@ -31,3 +31,6 @@ npm-debug.log
 
 # tmp directory
 tmp/*
+
+# Don't include bower stuff
+bower_components
