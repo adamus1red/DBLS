@@ -41,7 +41,7 @@ app.use(cookieSession({
 }));
 app.use(helmet()) // Bunch of useful CSP, Prefetch, header crap
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static',express.static(path.join(__dirname, 'public')));
 mongoose.connect(config.dburl); // connect to our database
 //Setup passport
 /* app.use(session({
