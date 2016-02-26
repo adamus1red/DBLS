@@ -4,7 +4,7 @@ REQUIRED_PROGRAMS=(node npm git)
 BOWER_MODULES=(Materialize jquery)
 
 # Sanity checks
-for cmd in REQUIRED_PROGRAMS
+for cmd in $REQUIRED_PROGRAMS
 do
     command -v $cmd >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed.  Aborting."; exit 1; }
 done
@@ -23,7 +23,7 @@ npm install
 npm install -g bower
 bower install
 
-for mod in BOWER_MODULES
+for mod in $BOWER_MODULES
 do
     cp bower_components/$mod/dist/* public/
 done
