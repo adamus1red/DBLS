@@ -1,4 +1,0 @@
-[submodule "materialize"]
-	path = public/materialize
-	url = https://github.com/Dogfalo/materialize.git
-	branch = master
