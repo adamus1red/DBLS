@@ -21,7 +21,7 @@ bower install --allow-root
 
 for mod in $BOWER_MODULES
 do
-    cp bower_components/$mod/dist/* public/
+    cp -R bower_components/$mod/dist/* public/
 done
 
 mv public/*.js public/js/
