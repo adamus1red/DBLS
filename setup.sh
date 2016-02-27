@@ -1,7 +1,8 @@
 #!/bin/bash
 
 REQUIRED_PROGRAMS=(node npm git)
-BOWER_MODULES=(Materialize jquery)
+BOWER_MODULES=(Materialize jquery font-awesome)
+STATIC_DIRS=(css font fonts images js)
 
 # Sanity checks
 for cmd in $REQUIRED_PROGRAMS
@@ -19,10 +20,11 @@ npm install
 npm install -g bower
 bower install --allow-root
 
-for mod in $BOWER_MODULES
-do
-    cp -R bower_components/$mod/dist/* public/
-done
+
+cp -R bower_components/Materialize/dist/* public/
+cp -R bower_components/jquery/dist/* public/js/
+cp -R bower_components/font-awesome/css/* public/css/
+cp -R bower_components/font-awesome/fonts/* public/fonts/
 
 mv public/*.js public/js/
 
