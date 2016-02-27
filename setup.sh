@@ -20,12 +20,14 @@ npm install
 npm install -g bower
 bower install --allow-root
 
+mkdir -p public/font public/js public/fonts public/css
 
 cp -R bower_components/Materialize/dist/* public/
 cp -R bower_components/jquery/dist/* public/js/
 cp -R bower_components/font-awesome/css/* public/css/
 cp -R bower_components/font-awesome/fonts/* public/fonts/
 
-mv public/*.js public/js/
-
 npm install -g pm2
+
+echo "Please enter the following command to run DBLS"
+echo "pm2 start bin/www --name \"DBLS\""
