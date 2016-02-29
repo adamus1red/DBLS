@@ -14,6 +14,7 @@ var helmet = require('helmet');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var staff = require('./routes/staff');
 var login = require('./routes/login');
 var exerciseRouter = require('./routes/exercise');
 
@@ -42,6 +43,7 @@ app.use(cookieSession({
 app.use(helmet()) // Bunch of useful CSP, Prefetch, header crap
 
 app.use('/static',express.static(path.join(__dirname, 'public')));
+app.use('/bower',express.static(path.join(__dirname, 'bower_components')));
 mongoose.connect(config.dburl); // connect to our database
 //Setup passport
 /* app.use(session({
@@ -55,6 +57,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', routes);
 app.use('/users', users);
 app.use('/profile', users);
+app.use('/staff', staff);
 app.use('/exercise', exerciseRouter);
 require('./routes/login')(app, passport); // load our routes and pass in our app and fully configured passport
 // require('./routes/login')(app, passport); // load our routes and pass in our app and fully configured passport
@@ -91,7 +94,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-console.log("We done the magic. Now running on port 3000");
+console.log("We done the magic. Now running on port " + (process.env.PORT || '3000'));
 module.exports = app;
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
