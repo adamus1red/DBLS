@@ -55,12 +55,13 @@ router.post('/:eid', function(req,res,next){
                             }
                             var userAnswer = JSON.stringify(userRow), correctAnswer = JSON.stringify(correctRow);
                             if(userAnswer === correctAnswer) {
-                                db.get('SELECT userID, exID FROM "main"."answers" WHERE userID = ?1 AND exID = ?2)', {1: req.user.id, 2: req.params.eid}, function(err, acheck) {
+                                db.get('SELECT userID, exID FROM "main"."answers" WHERE userID = ?1 AND exID = ?2', {1: req.user.id, 2: req.params.eid}, function(err, acheck) {
                                     if(err) {
                                         console.error(err);
                                     }
-                                    if(typeof acheck !== "undefined") {
+                                    if(typeof acheck === "undefined") {
                                         db.run('INSERT INTO answers ("userID","exID","answer") VALUES (?1,?2,?3)', {1: req.user.id, 2: req.params.eid, 3: req.body.sql}); 
+                                        console.log(req.user.id + " has passed Exercise " + req.params.eid);
                                     }
                                 });
                                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4), user : req.user, sentValue: req.body.sql, answerState : 2});
