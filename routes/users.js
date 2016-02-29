@@ -6,24 +6,28 @@ var db = new sqlite3.Database('./exercise.db', sqlite3.OPEN_READWRITE);
 
 /* GET users listing. */
 router.get('/', loggedIn, function(req, res, next) {
-    if(req.user){
-        var hash = "00000000000000000000000000000000";
-        if (req.user.google.email) {
-            hash = crypto.createHash('md5').update(req.user.google.email).digest("hex");
-        } else if(req.user.local.email){
-            hash = crypto.createHash('md5').update(req.user.local.email).digest("hex");
-        }
-        db.all("SELECT * FROM exercise", req.params.eid, function(err, row){
-            if(err) {
-                console.err(err);
-            }
-            console.log(req.user);
-            console.log(row)
-            res.render('profile.ejs', {title: "Profile", user : req.user, userAvatarHash: hash, questions: row});
-        });
-    } else {
-        res.redirect('/login');
+    var hash = "00000000000000000000000000000000";
+    if (req.user.google.email) {
+        hash = crypto.createHash('md5').update(req.user.google.email).digest("hex");
+    } else if(req.user.local.email){
+        hash = crypto.createHash('md5').update(req.user.local.email).digest("hex");
     }
+    console.log(req.user.id)
+    db.all("SELECT id FROM exercise", function(err, row){
+        if(err) {
+            console.error(err);
+            res.render('error.ejs', {message: "SQLITE DB error", error: {status: "DB01",stack: err,user : req.user}});
+        }
+        db.all("SELECT exID FROM answers WHERE userID = ?", req.user.id, function(err, rr) {
+            if (err) {
+                console.error(err);
+                res.render('error.ejs', {message: "SQLITE DB error", error: {status: "DB02",stack: err,user : req.user}});
+            }
+            console.log(rr)
+            res.render('profile.ejs', {title: "Profile", user : req.user, userAvatarHash: hash, questions: row, qdone: rr});
+        })
+        
+    });
 });
 
 module.exports = router;
@@ -34,4 +38,8 @@ function loggedIn(req, res, next) {
     } else {
         res.redirect('/login');
     }
+}
+
+function renderData(req, res, next){
+    
 }
