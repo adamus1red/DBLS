@@ -17,7 +17,7 @@ router.get('/:eid', function(req, res, next) {
     if(req.isAuthenticated()){
         db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid, function(err, row){
             if(err){
-                console.err(err);
+                console.error(err);
             } else if (typeof row === 'undefined'){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one"}, user : req.user});
             } else {
@@ -36,7 +36,7 @@ router.post('/:eid', function(req,res,next){
     if(req.isAuthenticated()){
         db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid, function(err, row){
             if(err){
-                console.err(err);
+                console.error(err);
             } else if (typeof row === 'undefined'){
                 res.render('error.ejs', {message: "No such question", error: {status: "QE404",stack: "Yo' no question with that ID exists. Try a different one", user : req.user}});
             } else {
@@ -54,7 +54,15 @@ router.post('/:eid', function(req,res,next){
                                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(err, null, 4), user : req.user, sentValue: req.body.sql, answerState : 3});
                             }
                             var userAnswer = JSON.stringify(userRow), correctAnswer = JSON.stringify(correctRow);
-                            if(userAnswer == correctAnswer) {
+                            if(userAnswer === correctAnswer) {
+                                db.get('SELECT userID, exID FROM "main"."answers" WHERE userID = ?1 AND exID = ?2)', {1: req.user.id, 2: req.params.eid}, function(err, acheck) {
+                                    if(err) {
+                                        console.error(err);
+                                    }
+                                    if(typeof acheck !== "undefined") {
+                                        db.run('INSERT INTO answers ("userID","exID","answer") VALUES (?1,?2,?3)', {1: req.user.id, 2: req.params.eid, 3: req.body.sql}); 
+                                    }
+                                });
                                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4), user : req.user, sentValue: req.body.sql, answerState : 2});
                             } else {
                                 res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4), user : req.user, sentValue: req.body.sql, answerState : 1});
