@@ -23,8 +23,11 @@ router.get('/', loggedIn, function(req, res, next) {
                 console.error(err);
                 res.render('error.ejs', {message: "SQLITE DB error", error: {status: "DB02",stack: err,user : req.user}});
             }
-            console.log(rr)
-            res.render('profile.ejs', {title: "Profile", user : req.user, userAvatarHash: hash, questions: row, qdone: rr});
+            if(rr == "") {
+                res.render('profile.ejs', {title: "Profile", user : req.user, userAvatarHash: hash, questions: row, qdone: {exID:0}});
+            } else {
+                res.render('profile.ejs', {title: "Profile", user : req.user, userAvatarHash: hash, questions: row, qdone: rr});
+            }
         })
         
     });
