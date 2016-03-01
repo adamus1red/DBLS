@@ -34,3 +34,6 @@ tmp/*
 
 # Don't include bower stuff
 bower_components
+
+# Don't include "dirty" exercise database
+exercise.db

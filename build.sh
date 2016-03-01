@@ -18,5 +18,7 @@ bower install
 
 sudo npm install -g pm2
 
+cp exercise.default.db exercise.db
+
 echo "Please enter the following command to run DBLS"
 echo "pm2 start bin/www --name \"DBLS\""
