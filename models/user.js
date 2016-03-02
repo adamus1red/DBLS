@@ -21,11 +21,6 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
-    cisauth          : {
-        id           : String,
-        email        : String,
-        password     : String
-    },
     gitlab           : {
         id           : String,
         displayName  : String,
@@ -35,7 +30,8 @@ var userSchema = mongoose.Schema({
     exercise : {
         id           : String,
         mark         : Number
-    }
+    },
+    isAdmin: Boolean
 });
 
 
