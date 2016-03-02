@@ -81,11 +81,19 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err,
-      user : 0
-    });
+    if(err.status === 500) {
+      res.render('500', {
+        message: err.message,
+        error: err,
+        user : req.user
+      });
+    } else {
+      res.render('error', {
+        message: err.message,
+        error: err,
+        user : 0
+      });
+    }
   });
 }
 
@@ -95,6 +103,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   if(err.status === 404){
     res.render('404', {user : req.user});
+  } else if(err.status === 500) {
+    res.render('500', {
+      message: err.message,
+      error: {},
+      user : req.user
+    });
   } else {
     res.render('error', {
       message: err.message,
