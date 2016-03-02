@@ -11,6 +11,7 @@ var session      = require('express-session');
 var SamlStrategy = require('passport-saml').Strategy;
 var cookieSession = require('cookie-session');
 var helmet = require('helmet');
+var compression = require('compression')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -40,6 +41,7 @@ app.use(cookieSession({
     maxAge: 2678400000 // 31 days
   },
 }));
+app.use(compression({filter: shouldCompress}))
 app.use(helmet()) // Bunch of useful CSP, Prefetch, header crap
 
 app.use('/static',express.static(path.join(__dirname, 'public')));
@@ -101,4 +103,14 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/');
+}
+
+function shouldCompress(req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
 }
