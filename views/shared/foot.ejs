@@ -11,18 +11,18 @@
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#supportchat">Support Chat</a></li>
-                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="https://sqlite.org/lang.html">SQLite Language Docs</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#supportchat"><i class="fa fa-comment"></i> Support Chat</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="https://sqlite.org/lang.html"><i class="fa fa-database"></i> SQLite Language Docs</a></li>
                     <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    <li><a class="waves-effect waves-light btn-flat modal-trigger grey-text text-lighten-3" href="https://gitlab.strathtech.co.uk/amcghie/dbls"><i class="fa fa-git-square"></i> Git Repository</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-        © 2014 Copyright Adam McGhie
-        <a class="grey-text text-lighten-4 right" href="https://gitlab.strathtech.co.uk/amcghie/dbls"><i class="fa fa-git-square"></i> Git Repository</a>
+        <i class="fa fa-copyright"></i> <%= new Date().getFullYear() %> Copyright Adam McGhie
+        <a class="grey-text text-lighten-4 right" href="https://gitlab.strathtech.co.uk/amcghie/dbls/raw/master/LICENSE"><i class="material-icons">lock</i> MIT License</a>
         </div>
     </div>
 </footer>
@@ -69,12 +69,13 @@
     s.type = 'text/javascript';
     s.src = '//cdn.emoji.rodeo/dist.js';
     d.appendChild(s);
+</script>
+<script defer asyn>
     $(document).ready(function(){
         $(".button-collapse").sideNav();
         $(".dropdown-button").dropdown();
         $('.modal-trigger').leanModal();
     });
 </script>
-
 </body>
 </html>

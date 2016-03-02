@@ -19,14 +19,14 @@ qattemptsper = (qattempts / questions.length) * 100;
 
     <div id="profile-page-header" class="card">
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="/static/images/strath-profile-bg.jpg" alt="user background">                    
+            <img class="responsive-img activator" src="/static/images/strath-profile-bg.jpg" alt="user background">                    
         </div>
         <figure class="card-profile-image hide-on-small-only">
-            <img src="http://www.gravatar.com/avatar/<%= userAvatarHash %>.jpg" alt="profile image" class="circle z-depth-2 responsive-img activator">
+            <img src="https://www.gravatar.com/avatar/<%= userAvatarHash %>.jpg" alt="profile image" class="circle z-depth-2 responsive-img activator">
         </figure>
         <div class="card-content">
             <div class="row">
-                <div class="col m3 s4 offset-m2">
+                <div class="col m3 s12 offset-m2 center-align">
                     <% if (user.google.name) {  %>
                     <h4 class="card-title grey-text text-darken-4"><%= user.google.name %></h4>
                     <p class="medium-small grey-text">Display Name</p>
@@ -38,11 +38,11 @@ qattemptsper = (qattempts / questions.length) * 100;
                     <p class="medium-small grey-text">Display Name</p>
                     <% } %>
                 </div>
-                <div class="col m2 s4 center-align">
+                <div class="col m2 s12 center-align">
                     <h4 class="card-title grey-text text-darken-4"><%= questions.length%></h4>
                     <p class="medium-small grey-text">Exercises assigned</p>                        
                 </div>
-                <div class="col m2 s4 center-align">
+                <div class="col m2 s12 center-align">
                     <h4 class="card-title grey-text text-darken-4"><%= qattempts %></h4>
                     <p class="medium-small grey-text">Completed exercises</p>                        
                 </div>                

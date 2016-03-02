@@ -33,14 +33,20 @@
     
     <link rel="stylesheet" href="/bower/highlightjs/styles/github.css" type="text/css" />
     <script>'4774fb52758dd53e2d9de759fbf78aaed73f4757c9eeed304ca7a33f29de09c3'</script>
+    <link rel="stylesheet" href="/bower/sweetalert/dist/sweetalert.css" type="text/css" />
 </head>
 <body>
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo center">DBLS</a>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 <% if (typeof user != "undefined") {%>
+                <a href="/profile" class="brand-logo center">DBLS</a>
+                <% } else { %>
+                <a href="/" class="brand-logo center">DBLS</a>
+                <% } %>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <% if (user === 0) {
+                 } else if (typeof user != "undefined") {%>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/profile" class="waves-effect waves-light"><i class="fa fa-user"></i> Profile</a></li>
                     <li><a href="/logout" class="waves-effect waves-light"><i class="fa fa-sign-out"></i> Logout</a></li>
