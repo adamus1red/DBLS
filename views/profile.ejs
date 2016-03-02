@@ -21,12 +21,12 @@ qattemptsper = (qattempts / questions.length) * 100;
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="/static/images/strath-profile-bg.jpg" alt="user background">                    
         </div>
-        <figure class="card-profile-image">
+        <figure class="card-profile-image hide-on-small-only">
             <img src="http://www.gravatar.com/avatar/<%= userAvatarHash %>.jpg" alt="profile image" class="circle z-depth-2 responsive-img activator">
         </figure>
         <div class="card-content">
             <div class="row">
-                <div class="col s3 offset-s2">
+                <div class="col m3 s4 offset-m2">
                     <% if (user.google.name) {  %>
                     <h4 class="card-title grey-text text-darken-4"><%= user.google.name %></h4>
                     <p class="medium-small grey-text">Display Name</p>
@@ -38,24 +38,24 @@ qattemptsper = (qattempts / questions.length) * 100;
                     <p class="medium-small grey-text">Display Name</p>
                     <% } %>
                 </div>
-                <div class="col s2 center-align">
+                <div class="col m2 s4 center-align">
                     <h4 class="card-title grey-text text-darken-4"><%= questions.length%></h4>
                     <p class="medium-small grey-text">Exercises assigned</p>                        
                 </div>
-                <div class="col s2 center-align">
+                <div class="col m2 s4 center-align">
                     <h4 class="card-title grey-text text-darken-4"><%= qattempts %></h4>
                     <p class="medium-small grey-text">Completed exercises</p>                        
                 </div>                    
-                <div class="col s2 center-align">                        
+                <div class="col m2 s6 center-align hide-on-small-only">
                 </div>                    
-                <div class="col s1 right-align">
+                <div class="col m1 right-align hide-on-small-only">
                     <a class="btn-floating activator waves-effect waves-light darken-2 right">
                         <i class="mdi-action-perm-identity"></i>
                     </a>
                 </div>
-          </div>
+            </div>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal flow-text">
             <p>
               <span class="card-title grey-text text-darken-4"><i class="mdi-navigation-close right"></i></span>
             </p>
@@ -67,7 +67,7 @@ qattemptsper = (qattempts / questions.length) * 100;
                 <p>
                     <strong>id</strong>: <%= user._id %><br>
                     <strong>email</strong>: <%= user.local.email %><br>
-                    <strong>password</strong>: <%= user.local.password %>
+                    <strong>password</strong>: <span class="truncate"><%= user.local.password %></span>
                 </p>
             </div>
             <div class="card-action">
@@ -85,7 +85,7 @@ qattemptsper = (qattempts / questions.length) * 100;
                 <% if (user.twitter.token) { %>
                 <p>
                     <strong>id</strong>: <%= user.twitter.id %><br>
-                    <strong>token</strong>: <%= user.twitter.token %><br>
+                    <strong>token</strong>: <span class="truncate"><%= user.twitter.token %></span><br>
                     <strong>display name</strong>: <%= user.twitter.displayName %><br>
                     <strong>username</strong>: <%= user.twitter.username %>
                 </p>
@@ -104,7 +104,7 @@ qattemptsper = (qattempts / questions.length) * 100;
                 <% if (user.google.token) { %>
                 <p>
                     <strong>id</strong>: <%= user.google.id %><br>
-                    <strong>token</strong>: <%= user.google.token %><br>
+                    <strong>token</strong>: <span class="truncate"><%= user.google.token %></span><br>
                     <strong>email</strong>: <%= user.google.email %><br>
                     <strong>name</strong>: <%= user.google.name %>
                 </p>
