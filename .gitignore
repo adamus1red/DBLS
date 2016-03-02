@@ -37,3 +37,5 @@ bower_components
 
 # Don't include "dirty" exercise database
 exercise.db
+
+config/config.js

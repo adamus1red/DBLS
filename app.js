@@ -24,7 +24,7 @@ var config = require('./config/config');
 var app = express();
 
 // view engine setup
-app.set('env', "development");
+app.set('env', config.env);
 //app.set('env', "production");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
