@@ -119,7 +119,11 @@ qattemptsper = (qattempts / questions.length) * 100;
         </div>
     </div>
     <div class="progress">
+        <% if(qattemptsper === 0) { %>
         <div class="determinate" style="width: <%= qattemptsper %>%"></div>
+        <% } else { %>
+        <div class="indeterminate"></div>
+        <% } %>
     </div>
     <ul class="collection with-header hoverable">
         <li class="collection-header"><h4>Exercises</h4></li>
