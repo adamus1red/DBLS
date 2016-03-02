@@ -133,7 +133,7 @@ qattemptsper = (qattempts / questions.length) * 100;
                         <!-- <%- user.id %> | <%- JSON.stringify(questions[i]) %> | <%- JSON.stringify(qdone[j]) %> -->
                         <% if (questions[i].id === qdone[j].exID) { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a>
-                        <% } else if (questions[i].userID == null)  { %>
+                        <% } else if (questions[i].userID === null)  { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
                         <% }
                     }
