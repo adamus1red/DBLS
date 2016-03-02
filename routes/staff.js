@@ -6,24 +6,7 @@ var db = new sqlite3.Database('./exercise.db', sqlite3.OPEN_READWRITE);
 
 /* GET users listing. */
 router.get('/', loggedIn, isAdmin, function(req, res, next) {
-    if(req.user){
-        var hash = "00000000000000000000000000000000";
-        if(req.user.local.email){
-            hash = crypto.createHash('md5').update(req.user.local.email).digest("hex");
-        } else if (req.user.google.email) {
-            hash = crypto.createHash('md5').update(req.user.google.email).digest("hex");
-        }
-        db.all("SELECT * FROM exercise", req.params.eid, function(err, row){
-            if(err) {
-                console.err(err);
-            }
-            console.log(req.user);
-            console.log(row)
-            res.render('profile.ejs', {title: "Profile", user : req.user, userAvatarHash: hash, questions: row});
-        });
-    } else {
-        res.redirect('/login');
-    }
+    res.send("Hello World");
 });
 
 module.exports = router;
@@ -37,7 +20,7 @@ function loggedIn(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-    if (req.user.isAdmin == "True") {
+    if (req.user.isAdmin === true) {
         next();
     } else {
         res.redirect('/profile');
