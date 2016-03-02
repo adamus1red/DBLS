@@ -24,6 +24,8 @@ var config = require('./config/config');
 var app = express();
 
 // view engine setup
+app.set('env', "development");
+//app.set('env', "production");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('x-powered-by',false); // disable sending powering technology for security reasons
@@ -44,8 +46,8 @@ app.use(cookieSession({
 app.use(compression({filter: shouldCompress}))
 app.use(helmet()) // Bunch of useful CSP, Prefetch, header crap
 
-app.use('/static',express.static(path.join(__dirname, 'public')));
-app.use('/bower',express.static(path.join(__dirname, 'bower_components')));
+app.use('/static',express.static(path.join(__dirname, 'public'), { maxAge: 86400000 /* 1d */ }));
+app.use('/bower',express.static(path.join(__dirname, 'bower_components'), { maxAge: 86400000 /* 1d */ }));
 mongoose.connect(config.dburl); // connect to our database
 //Setup passport
 /* app.use(session({
@@ -81,7 +83,8 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: err
+      error: err,
+      user : 0
     });
   });
 }
@@ -90,10 +93,15 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  if(err.status === 404){
+    res.render('404', {user : req.user});
+  } else {
+    res.render('error', {
+      message: err.message,
+      error: {},
+      user : req.user
+    });
+  }
 });
 
 console.log("We done the magic. Now running on port " + (process.env.PORT || '3000'));
