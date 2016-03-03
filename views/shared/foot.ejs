@@ -4,8 +4,9 @@
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">Please rate!<div data-rodeo></div></p>
-                <p>
+                <p class="grey-text text-lighten-4">Please rate!</p>
+                <p class="grey-text text-lighten-4">
+                    <div data-rodeo></div>
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
@@ -54,10 +55,12 @@
 
 <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" defer src="/bower/Materialize/dist/js/materialize.min.js"></script>
-<script type="text/javascript" async defer src="/bower/highlightjs/highlight.pack.min.js"></script>
+<script type="text/javascript" src="/bower/highlightjs/highlight.pack.min.js"></script>
+<script defer>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript" async defer src="/bower/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" async defer src="/bower/respond/dest/respond.min.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript">
     var __rodeo_config = {
         'clientId': '4774fb52758dd53e2d9de759fbf78aaed73f4757c9eeed304ca7a33f29de09c3',
         'theme': 'feverfew'
@@ -70,7 +73,7 @@
     s.src = '//cdn.emoji.rodeo/dist.js';
     d.appendChild(s);
 </script>
-<script defer asyn>
+<script>
     $(document).ready(function(){
         $(".button-collapse").sideNav();
         $(".dropdown-button").dropdown();
