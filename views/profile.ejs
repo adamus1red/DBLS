@@ -130,10 +130,8 @@ qattemptsper = (qattempts / questions.length) * 100;
         <% if (questions) { %>
             <% for(var i=0; i<questions.length; i++) {
                 if(qdone.length > 0) {
-                    for(var j=0; j<qdone.length; j++) { %>
-                        <!-- <%- JSON.stringify(questions[i]) %> -->
-                        <!-- <%- user.id %> | <%- JSON.stringify(questions[i]) %> | <%- JSON.stringify(qdone[j]) %> -->
-                        <% if (questions[i].id === qdone[j].exID) { %>
+                    for(var j=0; j<qdone.length; j++) {
+                        if (questions[i].id === qdone[j].exID) { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a>
                         <% } else if (questions[i].userID === null)  { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
@@ -150,5 +148,10 @@ qattemptsper = (qattempts / questions.length) * 100;
 <% include shared/foot.ejs %>
 
 <!-- DEBUG
+<% if (typeof debug === "undefined") { %>
+Available questions:
 <%- JSON.stringify(questions) %>
+Finished Questions:
 <%- JSON.stringify(qdone) %>
+<% } %>
+-->
