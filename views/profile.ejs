@@ -129,7 +129,7 @@ qattemptsper = (qattempts / questions.length) * 100;
         <li class="collection-header"><h4>Exercises</h4></li>
         <% if (questions) { %>
             <% for(var i=0; i<questions.length; i++) {
-                if(qdone.length > 0 || (questions.length !== qdone.length)) {
+                if(qdone.length >= 1 || (questions.length !== qdone.length)) {
                     for(var j=0; j<qdone.length; j++) {
                         if (questions[i].id === qdone[j].exID) { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a>
