@@ -119,7 +119,7 @@ qattemptsper = (qattempts / questions.length) * 100;
         </div>
     </div>
     <div class="progress">
-        <% if(qattemptsper === 0) { %>
+        <% if(qattemptsper > 0) { %>
         <div class="determinate" style="width: <%= qattemptsper %>%"></div>
         <% } else { %>
         <div class="indeterminate"></div>
@@ -129,17 +129,19 @@ qattemptsper = (qattempts / questions.length) * 100;
         <li class="collection-header"><h4>Exercises</h4></li>
         <% if (questions) { %>
             <% for(var i=0; i<questions.length; i++) {
-                if(qdone.length > 0) {
+                if(qdone.length > 0 || (questions.length !== qdone.length)) {
                     for(var j=0; j<qdone.length; j++) {
                         if (questions[i].id === qdone[j].exID) { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a>
-                        <% } else if (questions[i].userID === null)  { %>
+                        <% } else { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
                         <% }
                     }
-                } else { %>
-                 <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
-                <% } 
+                } else if(questions.length === qdone.length) { %>
+                 <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a></a>
+                <% } else { %>
+                <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
+                <% }
             }
         } %>
     </ul>

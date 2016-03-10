@@ -12,7 +12,7 @@ router.get('/', loggedIn, function(req, res, next) {
     } else if(req.user.local.email){
         hash = crypto.createHash('md5').update(req.user.local.email).digest("hex");
     }
-    console.log(req.user)
+    console.log(JSON.stringify(req.user));
     db.all("SELECT id FROM exercise", function(err, row){
         if(err) {
             console.error(err);

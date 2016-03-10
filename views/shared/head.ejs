@@ -26,7 +26,7 @@
     <!--Let browser know website is optimized for mobile-->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="/bower/html5shiv/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- hilight.js code & styles -->
@@ -51,10 +51,16 @@
                     } else if (typeof user != "undefined") {%>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/profile" class="waves-effect waves-light"><i class="fa fa-user"></i> Profile</a></li>
+                    <% if(user.isAdmin) { %>
+                    <li><a href="/staff" class="waves-effect waves-light"><i class="fa fa-unlock-alt"></i> Staff Panel</a></li>
+                    <% } %>
                     <li><a href="/logout" class="waves-effect waves-light"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
                 <ul class="side-nav" id="nav-mobile">
                     <li><a href="/profile" class="waves-effect waves-light"><i class="fa fa-user"></i> Profile</a></li>
+                    <% if(user.isAdmin) { %>
+                    <li><a href="/staff" class="waves-effect waves-light"><i class="fa fa-unlock-alt"></i> Staff Panel</a></li>
+                    <% } %>
                     <li><a href="/logout" class="waves-effect waves-light"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
                     <% } else {%>
