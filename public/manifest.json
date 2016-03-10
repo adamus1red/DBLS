@@ -1,0 +1,45 @@
+{
+  "name": "Database Learning System",
+  "short_name": "DBLS",
+  "icons": [
+    {
+      "src": "https://dbls.ovh/static/images/ico/sizes/DBLS_Icon-36.png",
+      "sizes": "36x36",
+      "type": "image/png",
+      "density": 0.75
+    },
+    {
+      "src": "https://dbls.ovh/static/images/ico/sizes/DBLS_Icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "density": 1.0
+    },
+    {
+      "src": "https://dbls.ovh/static/images/ico/sizes/DBLS_Icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "density": 1.5
+    },
+    {
+      "src": "https://dbls.ovh/static/images/ico/sizes/DBLS_Icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "density": 2.0
+    },
+    {
+      "src": "https://dbls.ovh/static/images/ico/sizes/DBLS_Icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "density": 3.0
+    },
+    {
+      "src": "https://dbls.ovh/static/images/ico/sizes/DBLS_Icon-320.png",
+      "sizes": "320x320",
+      "type": "image/png",
+      "density": 4.0
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
