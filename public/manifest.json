@@ -40,6 +40,6 @@
     }
   ],
   "start_url": "/",
-  "display": "browser",
+  "display": "standalone",
   "orientation": "portrait"
 }
