@@ -1,0 +1,39 @@
+<% include shared/head.ejs %>
+<div class="container">
+    <div class="page-header center">
+        <h1><i class="fa fa-info-circle"></i> Exercise Information</h1>
+    </div>
+    
+    <div class="row">
+        <div class="col m6 s12">
+            <h4>Info</h4>
+            <ul class="collection">
+                <li class="collection-item">Exercise ID: <%= data.exercises.id %></li>
+                <li class="collection-item">Question: <%- data.exercises.question %></li>
+                <li class="collection-item">Answer: <%= data.exercises.answer %></li>
+                <li class="collection-item">test query: <%= data.exercises.testQuery %></li>
+            </ul>
+        </div>
+        <div class="col m6 s12">
+            <h4>Answers</h4>
+            <ul class="collapsible popout collapsible-accordion">
+                <% if(data.answers.length > 0) {
+                    for(var i=0; i<data.answers.length; i++) { %>
+                <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+                <li class="">
+                    <div class="collapsible-header"><i class="material-icons">subtitles</i><%= data.answers[i].userID %></div>
+                    <div class="collapsible-body" style="display: block;"><p><%= data.answers[i].answer %><br><%= data.answers[i].date%></p></div>
+                </li>
+                <!-- <li class="collection-item"><%= JSON.stringify(data.answers) %></li> -->
+                <%  }
+                } else { %>
+                <li class="collection-item">No answers available</li>
+                <% }%>
+            </li>
+        </div>
+    </div>
+    <!-- <%= body %> -->
+    <% include shared/footer.ejs %>
+
+</div>
+<% include shared/foot.ejs %>
