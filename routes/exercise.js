@@ -73,10 +73,12 @@ router.post('/:eid', function(req,res,next){
                     }
                     
                 });
+                db2.close();
                 fs.unlink(testDBFile);
             }
             
         });
+        db.close();
     } else {
         res.redirect('/login');
     }
