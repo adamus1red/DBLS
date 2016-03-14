@@ -82,5 +82,4 @@ function exInfo(req, res, next) {
         });
         }
     });
-    db.close();
 }
