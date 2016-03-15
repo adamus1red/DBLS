@@ -32,7 +32,7 @@ router.get('/:eid', function(req, res, next) {
 
 router.post('/:eid', function(req,res,next){
     console.log(req.body);
-    
+    var subSQL = req.body.sql.replace(/(\r\n|\n|\r)/gm,"");;
     if(req.isAuthenticated()){
         db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid, function(err, row){
             if(err){
@@ -43,7 +43,7 @@ router.post('/:eid', function(req,res,next){
                 //console.log();
                 var testDBFile = saveOut(req, row.testDB);
                 var db2 = new sqlite3.Database(testDBFile);
-                db2.all(req.body.sql, function(err, userRow){
+                db2.all(subSQL, function(err, userRow){
                     if(err){
                         res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(err, null, 4), user : req.user, sentValue: req.body.sql, answerState : 3});
                     } else if (typeof userRow === 'undefined') {

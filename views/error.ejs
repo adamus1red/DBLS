@@ -2,7 +2,7 @@
     <div class="container">
         <div class="page-header center">
             <h1><i class="fa fa-cogs"></i> Error</h1>
-            <% if(user) { %>
+            <% if(typeof user !== "undefined") { %>
             <a href="/profile" class="btn btn-default btn-sm">Go Somewhere safe</a>
             <% } else { %>
             <a href="/" class="btn btn-default btn-sm">Go Somewhere safe</a>
