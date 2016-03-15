@@ -125,26 +125,29 @@ qattemptsper = (qattempts / questions.length) * 100;
         <div class="indeterminate"></div>
         <% } %>
     </div>
+
+    
     <ul class="collection with-header hoverable">
         <li class="collection-header"><h4>Exercises</h4></li>
-        <% if (questions) { %>
-            <% for(var i=0; i<questions.length; i++) {
-                if(qdone.length >= 1 || (questions.length !== qdone.length)) {
+        <% if (questions) {
+            for(var i=0; i<questions.length; i++) {
+                if(questions.length !== qdone.length){
                     for(var j=0; j<qdone.length; j++) {
-                        if (questions[i].id === qdone[j].exID) { %>
+                        if(qdone[j].exID === 0) { %>
+                            <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a>
+                        <% } else if (qdone[j].exID === questions[i].id) { %>
                             <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a>
                         <% } else { %>
-                            <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
+                            <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a>
                         <% }
                     }
-                } else if(questions.length === qdone.length) { %>
-                 <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a></a>
-                <% } else { %>
-                <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-ban"></i></a></a>
+                } else { %>
+                    <a href="/exercise/<%= questions[i].id %>" class="collection-item">/exercise/<%= questions[i].id %><i class="secondary-content fa fa-check"></i></a>
                 <% }
             }
-        } %>
+        }%>
     </ul>
+    
     <% include shared/footer.ejs %>
 </div>
 <% include shared/foot.ejs %>
@@ -152,8 +155,8 @@ qattemptsper = (qattempts / questions.length) * 100;
 <!-- DEBUG
 <% if (typeof debug === "undefined") { %>
 Available questions:
-<%- JSON.stringify(questions) %>
+<%- JSON.stringify(questions, null, 4) %>
 Finished Questions:
-<%- JSON.stringify(qdone) %>
+<%- JSON.stringify(qdone, null, 4) %>
 <% } %>
 -->
