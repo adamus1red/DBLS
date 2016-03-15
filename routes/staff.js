@@ -65,7 +65,7 @@ function totalCalcs(req, res, next) {
 
 function exInfo(req, res, next) {
     var data = {};
-    db.all("SELECT * FROM exercise WHERE id = ?", req.params.eid , function(err, row){
+    db.get("SELECT * FROM exercise WHERE id = ?", req.params.eid , function(err, row){
         if(err){
             console.error(err);
             res.render('error.ejs', {message: "SQLITE DB error", error: {status: "SP01",stack: err,user : req.user}});
