@@ -1,0 +1,58 @@
+<% include shared/head.ejs %>
+<div class="container">
+    <div class="page-header center">
+        <h1><i class="fa fa-info-circle"></i> Add Exercise</h1>
+    </div>
+    <% if(typeof banner !== "undefined"){ %>
+        <div class="row green lighten-1 z-depth-3">
+            <div class="col offset-s2 center s8">
+                    <span class=" flow-text grey-text text-lighten-4 ">Exercise Added!</span>
+            </div>
+        </div>
+    <% } %>
+    <form ref='uploadForm' 
+			id='uploadForm' 
+			action="/staff/add"
+			method='post' 
+			encType="multipart/form-data">
+        <div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="Answer" type="text" name="Answer" class="validate" length="140">
+                    <label for="Answer">Answer</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="test_query" type="text" name="test_query" class="validate" length="140">
+                    <label for="test_query">Test Query</label>
+                </div>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="Question" name="Question" class="materialize-textarea"></textarea>
+                            <label for="Question">Question</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>File</span>
+                    <input name="testDB" type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" id="testDB" type="text">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </form>
+    
+    <% include shared/footer.ejs %>
+
+</div>
+<% include shared/foot.ejs %>
+<% if (typeof debugInfo !== "undefined") { %>
+<!-- <%- debugInfo %> -->
+<% } %>
