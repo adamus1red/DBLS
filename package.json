@@ -30,6 +30,7 @@
     "passport-local": "^1.0.0",
     "passport-saml": "^0.15.0",
     "passport-twitter": "^1.0.4",
+    "pmx": "^0.6.1",
     "serve-favicon": "~2.3.0",
     "sqlite3": "^3.1.1"
   }
