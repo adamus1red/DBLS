@@ -11,7 +11,8 @@ var session      = require('express-session');
 var SamlStrategy = require('passport-saml').Strategy;
 var cookieSession = require('cookie-session');
 var helmet = require('helmet');
-var compression = require('compression')
+var compression = require('compression');
+var fileUpload = require('express-fileupload');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -34,6 +35,7 @@ app.set('x-powered-by',false); // disable sending powering technology for securi
 app.use(favicon(path.join(__dirname, 'public', 'images','ico','android','web_hi_res_512.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieSession({

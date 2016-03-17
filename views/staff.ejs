@@ -110,9 +110,12 @@
         <% for(var i=0; i<data.exercises.length; i++) { %>
             <a href="/staff/ex/<%= data.exercises[i].id %>" class="collection-item">Exercise <%= data.exercises[i].id  %><i class="secondary-content fa fa-arrow-right"></i></a>
         <% } %>
+        <a href="/staff/add" class="collection-item">Add Exercise <i class="secondary-content material-icons">add_circle_outline</i></a>
     </div>
     <% include shared/footer.ejs %>
 </div>
 <% include shared/foot.ejs %>
 
+<% if (typeof debugInfo !== "undefined") { %>
 <!-- <%= debugInfo %> -->
+<% } %>

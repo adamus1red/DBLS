@@ -71,11 +71,9 @@ router.post('/:eid', function(req,res,next){
                         });
                         //res.render('exercise.ejs', {exID: req.params.eid, title: "Exercise " + req.params.eid, question : row.question, output: JSON.stringify(userRow, null, 4), user : req.user, sentValue: req.body.sql});
                     }
-                    
                 });
                 fs.unlink(testDBFile);
             }
-            
         });
     } else {
         res.redirect('/login');

@@ -38,9 +38,9 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <%if (typeof sentValue !== "undefined") { %>
-                            <textarea name="sql" class="materialize-textarea" rows="3" ><%= sentValue %></textarea>
+                            <textarea name="sql" id="textarea1" class="materialize-textarea" rows="3" ><%= sentValue %></textarea>
                             <% } else { %>
-                            <textarea name="sql" class="materialize-textarea" rows="3"></textarea>
+                            <textarea name="sql" id="textarea1" class="materialize-textarea" rows="3"></textarea>
                             <% } %>
                             <label for="textarea1">SQL</label>
                         </div>
