@@ -3,7 +3,9 @@
 /**
  * Module dependencies.
  */
-
+require('pmx').init({
+  http : true
+});
 var app = require('../app');
 var debug = require('debug')('dbls:server');
 var http = require('http');
