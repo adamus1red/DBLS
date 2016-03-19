@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('./exercise.db', sqlite3.OPEN_READWRITE);
-
+var db = new sqlite3.cached.Database('./exercise.db', sqlite3.OPEN_READWRITE);
 /* GET users listing. */
 router.get('/', loggedIn, isAdmin, function(req, res, next) {
     var hash = "00000000000000000000000000000000";
