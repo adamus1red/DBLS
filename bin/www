@@ -4,7 +4,9 @@
  * Module dependencies.
  */
 require('pmx').init({
-  http : true
+  http : true,
+  network       : true,  // Network monitoring at the application level
+  ports         : true,  // Shows which ports your app is listening on (default: false)
 });
 var app = require('../app');
 var debug = require('debug')('dbls:server');
