@@ -297,22 +297,6 @@ module.exports = function(passport) {
 
     }));
 
-    // CIS SAML
-    passport.use(new SamlStrategy(
-      {
-        path: configAuth.CISAuth.callbackURL,
-        entryPoint: configAuth.CISAuth.host,
-        issuer: configAuth.CISAuth.issuer
-      },
-      function(profile, done) {
-        User.findOrCreate({ 'cis-saml.email' : profile.email}, function(err, user) {
-          if (err) {
-            return done(err);
-          }
-          return done(null, user);
-        })
-      })
-    );
     // Gitlab StrathTECH
     
     passport.use(new GitlabStrategy({
