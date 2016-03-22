@@ -13,6 +13,7 @@ var cookieSession = require('cookie-session');
 var helmet = require('helmet');
 var compression = require('compression');
 var fileUpload = require('express-fileupload');
+var csrf = require('csurf')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +22,7 @@ var login = require('./routes/login');
 var exerciseRouter = require('./routes/exercise');
 
 var config = require('./config/config');
+var csrfProtection = csrf({ cookie: true })
 
 var app = express();
 

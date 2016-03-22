@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var csrf = require('csurf');
+var csrfProtection = csrf({ cookie: true });
 
 module.exports = function(app, passport) {
 // =============================================================================
@@ -10,13 +12,13 @@ module.exports = function(app, passport) {
     // locally --------------------------------
         // LOGIN ===============================
         // show the login form
-        app.get('/login/', function(req, res) {
-            res.render('login.ejs', { title: "Login", message: req.flash('loginMessage') });
+        app.get('/login/', csrfProtection, function(req, res) {
+            res.render('login.ejs', { csrfToken: req.csrfToken(), title: "Login", message: req.flash('loginMessage') });
         });
 
         
         // process the login form
-        app.post('/login/', passport.authenticate('local-login', {
+        app.post('/login/', csrfProtection, passport.authenticate('local-login', {
             successRedirect : '/profile', // redirect to the secure profile section
             failureRedirect : '/login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
@@ -24,12 +26,12 @@ module.exports = function(app, passport) {
 
         // SIGNUP =================================
         // show the signup form
-        app.get('/login/signup', function(req, res) {
-            res.render('signup.ejs', { title: "Signup", message: req.flash('signupMessage') });
+        app.get('/login/signup', csrfProtection, function(req, res) {
+            res.render('signup.ejs', { csrfToken: req.csrfToken(), title: "Signup", message: req.flash('signupMessage') });
         });
 
         // process the signup form
-        app.post('/login/signup', passport.authenticate('local-signup', {
+        app.post('/login/signup', csrfProtection, passport.authenticate('local-signup', {
             successRedirect : '/profile', // redirect to the secure profile section
             failureRedirect : '/login/signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
