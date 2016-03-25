@@ -5,7 +5,11 @@
         <h1 class="center"><span class="fa fa-sign-in"></span> Login</h1>
 
         <% if (message.length > 0) { %>
-            <div class="alert alert-danger"><%= message %></div>
+            <div class="row red lighten-1 z-depth-3">
+                <div class="col offset-s2 center s8">
+                    <span class=" flow-text grey-text text-lighten-4 "><%= message %></span>
+                </div>
+            </div>
         <% } %>
 
         <!-- LOGIN FORM -->

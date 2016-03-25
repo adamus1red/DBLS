@@ -6,7 +6,7 @@ var router = express.Router();
 
 var util = require('util')
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('./exercise.db', sqlite3.OPEN_READWRITE);
+var db = new sqlite3.Database('./exercise.db');
 var fs = require('fs');
 var dir = './tmp';
 

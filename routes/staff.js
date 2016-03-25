@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
+var multer  = require('multer')
+var upload = multer({ dest: 'tmp/' });
 var sqlite3 = require('sqlite3').verbose();
+var fs = require('fs');
 var db = new sqlite3.cached.Database('./exercise.db', sqlite3.OPEN_READWRITE);
 /* GET users listing. */
+
 router.get('/', loggedIn, isAdmin, function(req, res, next) {
     var hash = "00000000000000000000000000000000";
     if (req.user.google.email) {
@@ -18,20 +22,29 @@ router.get('/', loggedIn, isAdmin, function(req, res, next) {
 
 router.get('/ex/:eid', loggedIn, isAdmin, function(req, res, next) {
     exInfo(req,res,function(totals){
-        res.render('staff-exinfo.ejs', {user: req.user, data:totals, body: JSON.stringify(totals,null,4) });
+        res.render('staff-exinfo.ejs', {title: "Exercise Info :: Staff", user: req.user, data:totals, body: JSON.stringify(totals,null,4)});
     });
 });
 
 router.get('/add', loggedIn, isAdmin, function(req,res,next) {
-   res.render('staff-ex-add.ejs', {title: "Staff Overview", user: req.user, swal:false});
+   res.render('staff-ex-add.ejs', {title: "Staff Overview", user: req.user, swal:false, message: "", type: 0});
 });
 
-router.post('/add', loggedIn, isAdmin, function(req,res,next) {
-    db.run('INSERT INTO exercise ("question","answer","testQuery","hint","testDB","type") VALUES ($question,$answer,$testQuery,$hint,$testDB,0)',{$question : req.body.Question,$answer : req.body.Answer,$testQuery : req.body.test_query,$hint : req.body.test_query,$testDB : req.files.testDB.data});
-
-    res.render('staff-ex-add.ejs', {title: "Staff Overview", user: req.user, debugInfo: JSON.stringify(req.body) + "\r\nFILE" + JSON.stringify(req.files), swal:true});
-    /*console.log(JSON.stringify(req.files.testDB.data, null, 4));
-    console.log(JSON.stringify(req.body, null, 4)); */
+var cpUpload = upload.fields([{ name: 'testDB', maxCount: 1 }])
+router.post('/add', loggedIn, isAdmin, cpUpload, function(req,res,next) {
+    console.log(req.body);
+    console.log(req.files);
+    var data = fs.readFileSync(req.files.testDB[0].path);
+    db.run('INSERT INTO exercise ("question","answer","testQuery","hint","testDB","type") VALUES ($question,$answer,$testQuery,$hint,$testDB,0)',{$question : req.body.Question,$answer : req.body.Answer,$testQuery : req.body.test_query,$hint : req.body.test_query,$testDB : data}, function(err) {
+        if(err) {
+            res.render('staff-ex-add.ejs', {title: "Add Exercise :: Staff", user: req.user, debugInfo: JSON.stringify(req.body) + "\r\nFILE" + JSON.stringify(req.files), error: "true", message: "SQL Error", type: 1});
+        } else {
+            res.render('staff-ex-add.ejs', {title: "Add Exercise :: Staff", user: req.user, debugInfo: JSON.stringify(req.body) + "\r\nFILE" + JSON.stringify(req.files), message: "Added Exercise", type: 2});
+        }
+        
+    });   
+    fs.unlink(req.files.testDB[0].path);
+        
 });
 
 module.exports = router;
