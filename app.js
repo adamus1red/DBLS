@@ -42,6 +42,8 @@ app.use(cookieSession({
   name: 'session',
   keys: ['dsgdahgehtdr', 'hgetrbtdbtdf'],
   cookie: {
+    httpOnly: true,
+    secure: true,
     maxAge: 2678400000 // 31 days
   },
 }));
