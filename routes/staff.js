@@ -95,7 +95,7 @@ function exInfo(req, res, next) {
             res.render('error.ejs', {message: "SQLITE DB error", error: {status: "SP01",stack: err,user : req.user}});
         } else {
         data.exercises = row;
-        db.all('SELECT * FROM "answers" exID = ?2', {2: req.params.eid}, function(err, acheck) {
+        db.all('SELECT * FROM "answers" WHERE exID = ?2', {2: req.params.eid}, function(err, acheck) {
             if(err){
                 console.error(err);
                 res.render('error.ejs', {message: "SQLITE DB error", error: {status: "SP02",stack: err,user : req.user}});
