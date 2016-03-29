@@ -21,20 +21,85 @@ requirements
 -   Ability to track student progress
 
 
-## Quick Start
+Quick Start {#quick-start .ListParagraph}
+-----------
 
 This guide will help you quickly get a copy of the DBLS up and running
 
-### Requirements
-- Must run nodeJS v4.7 or later
-- Have greater than 512MB ram
+### Requirements {#requirements .ListParagraph}
 
-### Intall
+-   Must run nodeJS v4.7 or later
 
-1. Install [nodeJS](https://nodejs.org/en/download/) if you haven't already
-* Install [MongoDB](https://www.mongodb.org/downloads#production)
-* Enter the following into a a terminal in the folder you have the DBLS code\
-`bash build.sh`
-* Wait for it to get all it's required libraries
-  * if this is a first time setup you may be asked for your sudo password to install some features
-* run `npm start` to start the application on port 3000
+-   Have greater than 512MB ram
+
+### Install {#install .ListParagraph}
+
+1.  Install [nodeJS](https://nodejs.org/en/download/) if you haven't
+    already
+
+2.  Install [MongoDB](https://www.mongodb.org/downloads#production) and
+    ensure it’s running
+
+3.  Enter the following into a a terminal in the folder you have the
+    DBLS code
+
+    a.  bash build.sh
+
+4.  Wait for it to get all its required libraries
+
+    a.  if this is a first time setup you may be asked for your sudo
+        password to install some features
+
+5.  Modify the configuration files found in ./config/
+
+6.  run npm start to start the application on port 3000
+
+Production Installation {#production-installation .ListParagraph}
+-----------------------
+
+This will detail how to run a clustered instance of the Database
+Learning System to scale
+
+### Requirements {#requirements-1 .ListParagraph}
+
+-   Must run nodeJS v4.7 or later
+
+-   Have greater than 1024MB of RAM
+
+-   Minimum 2 CPU cores
+
+### Install {#install-1 .ListParagraph}
+
+1.  Install [nodeJS](https://nodejs.org/en/download/) if you haven't
+    already
+
+2.  Install [MongoDB](https://www.mongodb.org/downloads#production) and
+    ensure it’s running
+
+3.  Enter the following into a a terminal in the folder you have the
+    DBLS code
+
+    a.  bash build.sh
+
+4.  Wait for it to get all its required libraries
+
+    a.  if this is a first time setup you may be asked for your sudo
+        password to install some features
+
+5.  Modify the configuration files found in ./config/
+
+6.  Install PM2 with the following command sudo npm -g install pm2
+
+### Setup {#setup .ListParagraph}
+
+1.  Modify the configuration files found in ./config/
+
+2.  Start DBLS in cluster mode with the following command
+
+    a.  pm2 start bin/www -i 0 –name “DBLS”
+
+3.  The DBLS will now start as in a cluster with up to the number of
+    instances started being the number of CPU cores available.
+
+Note: It is advised that DBLS be run behind an NGINX reverse proxy. An
+example configuration for this can be found in Appendix A.
