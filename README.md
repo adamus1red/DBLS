@@ -29,3 +29,12 @@ This guide will help you quickly get a copy of the DBLS up and running
 - Must run nodeJS v4.7 or later
 - Have greater than 512MB ram
 
+### Intall
+
+1. Install [nodeJS](https://nodejs.org/en/download/) if you haven't already
+* Install [MongoDB](https://www.mongodb.org/downloads#production)
+* Enter the following into a a terminal in the folder you have the DBLS code\
+`bash build.sh`
+* Wait for it to get all it's required libraries
+  * if this is a first time setup you may be asked for your sudo password to install some features
+* run `npm start` to start the application on port 3000
