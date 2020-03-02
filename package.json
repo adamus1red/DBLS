@@ -15,7 +15,7 @@
     "cookie-session": "1.4.0",
     "csurf": "1.11.0",
     "debug": "2.6.9",
-    "ejs": "2.5.9",
+    "ejs": "2.7.4",
     "express": "4.13.4",
     "express-fileupload": "0.4.0",
     "express-session": "1.17.0",
