@@ -24,7 +24,7 @@
     "mongoose": "6.3.4",
     "morgan": "1.10.0",
     "multer": "1.4.4",
-    "passport": "0.5.3",
+    "passport": "0.6.0",
     "passport-gitlab": "0.5.0",
     "passport-google": "0.3.0",
     "passport-google-oauth": "2.0.0",
