@@ -32,7 +32,7 @@
     "@node-saml/passport-saml": "5.0.1",
     "passport-twitter": "1.0.4",
     "pmx": "1.6.7",
-    "serve-favicon": "2.5.0",
+    "serve-favicon": "2.5.1",
     "sqlite3": "5.1.7"
   }
 }
