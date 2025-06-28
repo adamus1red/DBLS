@@ -23,7 +23,7 @@
     "helmet": "8.1.0",
     "mongoose": "8.16.1",
     "morgan": "1.10.0",
-    "multer": "1.4.4",
+    "multer": "2.0.1",
     "passport": "0.7.0",
     "passport-gitlab": "0.5.0",
     "passport-google": "0.3.0",
