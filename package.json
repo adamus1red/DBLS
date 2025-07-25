@@ -29,7 +29,7 @@
     "passport-google": "0.3.0",
     "passport-google-oauth": "2.0.0",
     "passport-local": "1.0.0",
-    "@node-saml/passport-saml": "5.0.1",
+    "@node-saml/passport-saml": "5.1.0",
     "passport-twitter": "1.0.4",
     "pmx": "1.6.7",
     "serve-favicon": "2.5.1",
