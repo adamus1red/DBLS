@@ -22,7 +22,7 @@
     "fs": "0.0.2",
     "helmet": "8.2.0",
     "mongoose": "9.6.3",
-    "morgan": "1.10.1",
+    "morgan": "1.11.0",
     "multer": "2.1.1",
     "passport": "0.7.0",
     "passport-gitlab": "0.5.0",
